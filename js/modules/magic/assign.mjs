@@ -1,0 +1,1 @@
+Alpine.magic('assign', () => Object.assign);

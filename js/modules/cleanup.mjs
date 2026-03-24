@@ -1,0 +1,1 @@
+export default (el, html) => ([...el.querySelectorAll(':scope > *')].forEach(e => e.remove()), html);

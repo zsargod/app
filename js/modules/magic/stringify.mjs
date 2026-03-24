@@ -1,0 +1,1 @@
+Alpine.magic('stringify', () => JSON.stringify);

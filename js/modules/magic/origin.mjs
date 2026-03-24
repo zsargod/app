@@ -1,0 +1,1 @@
+Alpine.magic('origin', () => window.location.origin);

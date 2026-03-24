@@ -1,0 +1,19 @@
+@import "https://cdn.jsdelivr.net/npm/basecoat-css@0.3.10/dist/basecoat.cdn.min.css";
+
+[x-cloak] {
+    display: none !important;
+}
+
+:root {
+    --overlay: rgb(0 0 0 / 0.25);
+}
+
+@layer components {
+
+    .toaster .toast[aria-hidden=true] .toast-content {
+        transition-delay: 300ms;
+        transition: padding 0.1s ease;
+        padding: 0;
+    }
+
+}

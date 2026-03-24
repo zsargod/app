@@ -1,0 +1,1 @@
+Alpine.magic('selector', (query = '', el) => (el || document).querySelectorAll(query));

@@ -1,0 +1,15 @@
+<template x-if="import_done" x-data="Import(URL+'/js/modules/data/toast.mjs')">
+    <template x-if="toasts.length" x-data="Toast" @toast:show.window="toast_show($event.detail)"
+        @toast:hide-all.window="toasts=[]">
+        <div class="toaster overflow-y-auto fixed h-fit max-h-screen z-50" :class="$data.className">
+            <template x-for="toast in toasts" :key="toast.id">
+                <div x-data="{hidden: false, animationTimeout: $data.animationTimeout || 400}"
+                    x-init="$template($el, toast.component, toast_timeout(toast, $data.timeout))"
+                    x-effect="hidden ? $wait(animationTimeout,'toast:close').then($dispatch) : null"
+                    @toast:close.stop="toast_close(toast)" @toast:hide="hidden=true" @mouseenter="toast_hover(toast)"
+                    @mouseleave="toast_timeout(toast, $data.timeout)" :aria-hidden="hidden" role="status" aria-atomic="true"
+                    class="toast" :class="toast.className"></div>
+            </template>
+        </div>
+    </template>
+</template>

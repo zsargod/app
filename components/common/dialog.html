@@ -1,0 +1,10 @@
+<template x-if="!!dialog" x-data="{dialog:null}" @dialog:open.window="!dialog ? dialog=$event.detail : null"
+    @dialog:close-all.window="dialog=null">
+    <div x-data="{open:true, timeout: dialog.timeout || 150}"
+        x-effect="!open ? $wait(timeout,'dialog:close').then($dispatch) : null"
+        @dialog:close.stop="$event.detail===true ? open=false : dialog=null">
+        <div x-data="dialog.data" @click="$event.target===$refs.dialog && !dialog.modal ? open=false : null"
+            x-init="$template($el, dialog.component || dialog)"></div>
+        <div x-init="$template($el, URL+'/components/common/dialog.html')"></div>
+    </div>
+</template>

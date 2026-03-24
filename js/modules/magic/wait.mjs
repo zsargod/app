@@ -1,0 +1,1 @@
+Alpine.magic('wait', () => (ms = 0, value) => new Promise(resolve => setTimeout(() => resolve(value), ms)));
