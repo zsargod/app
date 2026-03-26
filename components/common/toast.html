@@ -3,12 +3,14 @@
         @toast:hide-all.window="toasts=[]">
         <div class="toaster overflow-y-auto fixed h-fit max-h-screen z-50" :class="$data.className">
             <template x-for="toast in toasts" :key="toast.id">
-                <div x-data="{hidden: false, animationTimeout: $data.animationTimeout || 400}"
-                    x-init="$template($el, toast.component, toast_timeout(toast, $data.timeout))"
+                <div x-data="{hidden: false, timeout: toast.timeout || $data.timeout || 5000, animationTimeout: $data.animationTimeout || 400}">
+                   <div x-data="toast.data"
+                    x-init="$template($el, toast.component, toast_timeout(toast, timeout))"
                     x-effect="hidden ? $wait(animationTimeout,'toast:close').then($dispatch) : null"
                     @toast:close.stop="toast_close(toast)" @toast:hide="hidden=true" @mouseenter="toast_hover(toast)"
-                    @mouseleave="toast_timeout(toast, $data.timeout)" :aria-hidden="hidden" role="status" aria-atomic="true"
-                    class="toast" :class="toast.className"></div>
+                    @mouseleave="toast_timeout(toast, timeout)" :aria-hidden="hidden" role="status"
+                    aria-atomic="true" class="toast" :class="toast.className"></div> 
+                </div>
             </template>
         </div>
     </template>
